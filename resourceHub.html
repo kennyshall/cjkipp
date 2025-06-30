@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Park Community Resource Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <style>
+    :root {
+      --primary: #2c7873;
+      --secondary: #6fb98f;
+      --accent: #ff7e5f;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --transition: all 0.3s ease;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding-bottom: 120px;
+      background-color: var(--light);
+      color: var(--dark);
+      transition: var(--transition);
+      direction: ltr;
+    }
+    body[lang="ar"] {
+      direction: rtl;
+      font-family: 'Tahoma', Arial, sans-serif;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 2em 0;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+    /* Goal banner styling */
+    .goal-banner {
+      background: green;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    .language-switcher {
+      margin-top: 1em;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .lang-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      backdrop-filter: blur(5px);
+    }
+    .lang-btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+    .lang-btn.active {
+      background: white;
+      color: var(--primary);
+    }
+    nav {
+      background-color: white;
+      padding: 1em;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: var(--primary);
+      background: rgba(44,120,115,0.1);
+    }
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .resource-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.5s forwards;
+    }
+    .resource-card:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    .audio-guide {
+      background: rgba(111,185,143,0.1);
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .emoji {
+      font-size: 1.5rem;
+    }
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .animate-text {
+      transition: var(--transition);
+    }
+    .instagram-btn {
+        display: inline-block;
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        margin-top: 10px;
+        font-weight: 600;
+        transition: transform 0.3s ease;
+      }
+      .instagram-btn:hover {
+        transform: translateY(-2px);
+      }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="header-title">College Park Community Resource Hub</h1>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,es,ar,fr,zh-CN',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+      
+      // Hide the Google branding
+      var googleBranding = document.querySelector('.goog-logo-link');
+      if (googleBranding) {
+        googleBranding.style.display = 'none';
+      }
+      var googleText = document.querySelector('.goog-te-banner-frame');
+      if (googleText) {
+        googleText.style.display = 'none';
+      }
+    }
+
+    function translatePage(lang) {
+      // Update active button
+      const langButtons = document.querySelectorAll('.lang-btn');
+      langButtons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      // Change the language
+      const select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event('change'));
+      }
+      
+      // Update direction for RTL languages
+      if (lang === 'ar') {
+        document.body.setAttribute('dir', 'rtl');
+        document.body.setAttribute('lang', 'ar');
+      } else {
+        document.body.setAttribute('dir', 'ltr');
+        document.body.setAttribute('lang', lang);
+      }
+    }
+
+    // Listen for language change events
+    document.addEventListener('DOMContentLoaded', function() {
+      // This helps with the initial load
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        if (hash.startsWith('googtrans')) {
+          const lang = hash.split('/')[1];
+          document.body.setAttribute('lang', lang);
+        }
+      }
+    });
+  </script>
+   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </header>
+
+  <!-- Goal Banner -->
+  <div class="goal-banner">
+    Our goal is to provide a comprehensive directory of community resources to assist College Park residents in accessing food, legal aid, employment, family support, transportation, and housing services. We aim to make this information accessible in multiple languages for everyone.
+  </div>
+
+  <nav>
+    <a href="#food" id="nav-food" onclick="openSectionTab(event)">Food</a>
+    <a href="#legal" id="nav-legal" onclick="openSectionTab(event)">Legal Aid</a>
+    <a href="#employment" id="nav-employment" onclick="openSectionTab(event)">Employment Assistance</a>
+    <a href="#family Assistance" id="nav-family Assistance" onclick="openSectionTab(event)">Family Assistance </a>
+    <a href="#transportation" id="nav-transportation" onclick="openSectionTab(event)">Transportation</a>
+    <a href="#housing" id="nav-housing" onclick="openSectionTab(event)">Housing</a>
+    <a href="https://211md.org/" id="nav-211md" target="_blank">211 Maryland</a>
+  </nav>
+
+  <section id="content">
+    <!-- Food Resource -->
+    <div class="resource-card" id="food" style="animation-delay: 0.1s">
+      <h2><span class="emoji">🍎</span> <span class="animate-text" id="food-title">Food Distribution</span></h2>
+      <div class="card-content">
+        <p><strong>College Park Community Food Bank</strong><br>
+        📅 Saturday: 9:30 AM – 11:00 AM EDT<br>
+        📍 9704 Rhode Island Avenue, College Park, MD 20740<br>
+        Serving anyone in need, individuals and families of all ages. </p>
+        <a href="https://www.collegeparkfoodbank.com/contact-us-1" target="_blank" rel="noopener">
+          Contact
+        </a>
+        <a href="https://www.collegeparkfoodbank.com/" target="_blank" rel="noopener">
+          College Park Community Food Bank
+        </a>
+        <p><strong>Food Pantry – UMD Campus Pantry</strong><br>
+        📅 Thursday & Friday: 12:00 PM – 6:00 PM EDT<br>
+        📍 7093 Preinkert Drive, College Park, MD 20742<br>
+        Serving University of Maryland students, faculty, and staff experiencing food insecurity<br>
+           ☎️ (301) 314-8068.</p>
+        <a href="https://dining.umd.edu/sustainability/campus-pantry" target="_blank" rel="noopener">
+          Food Pantry – UMD Campus Pantry
+        </a>
+        <p><strong>Food Pantry – St. Mark's Food Pantry</strong><br>
+        📅 Monday – Friday: 10:00 AM – 7:00 PM EDT<br>
+        📍 7501 Adelphi Road, Hyattsville, MD 20783<br>
+        Serving anyone in need, individuals and families of all ages.<br>
+         ☎️ (301) 422-8300</p>
+        <a href="https://stmarkhyattsville.org/st-marks-food-pantry/" target="_blank" rel="noopener">
+          Food Pantry – St. Mark's Food Pantry
+        </a>
+        <p><strong>Food Pantry – No Limits Food Pantry</strong><br>
+        📅 Friday: 4:00 PM – 7:00 PM EDT<br>
+        📍 7721 Barlowe Road, Hyattsville, MD 20785<br>
+        Serving anyone in need, individuals and families of all ages, including those with limited English proficiency.<br>
+         ☎️ (202) 827-2131</p>
+        <a href="https://www.facebook.com/mobilefoodministry/" target="_blank" rel="noopener">
+          Food Pantry – No Limits Food Pantry
+        </a>
+        <p><strong>Food Pantry – Salvation Army Food Pantry</strong><br>
+        📅 Monday – Friday: 9:00 AM - 12:00 PM EDT, 1:00PM - 4:00 PM EDT<br>
+        📍 4825 Edmonston Road, Hyattsville, MD 20781<br>
+        Serving anyone in need, individuals and families of all ages.<br>
+         ☎️ (301) - 277 - 6103</p>
+        <a href="https://www.icarol.info/ResultDetails.aspx?org=2046&agencynum=56438948&sitenum=55298812" target="_blank" rel="noopener">
+          Salvation Army Food Pantry 
+        </a>
+        <p><strong>Soup 2 Go Ministry and Food Pantry</strong><br>
+        📅 Thursday: 10:00 AM – 1:00 PM EDT<br>
+        📍 1700 Powder Mill Road, Silver Spring, MD 20903<br>
+        Serving anyone in need, individuals and families of all ages, including those experiencing homelessness.<br>
+         ☎️ (301) 439-5900</p>
+        <a href="https://www.7cups.com/local/us/md/laurel/food/soup-2-go-minis-7181181277" target="_blank" rel="noopener">
+          Soup 2 Go Ministry and Food Pantry 
+        </a>
+        <p><strong>City of Light Helping Hands Food Pantry</strong><br>
+        📅 Sunday: 12:30 PM – Until Supplies Last<br>
+        📍 520 Randolph Road, Silver Spring, MD 20904<br>
+        Serving anyone in need, individuals and families of all ages.<br>
+         ☎️ 1 - 301 - 890 - 4545</p>
+        <a href="https://www.kpcim.org/city-of-light" target="_blank" rel="noopener">
+          City of Light Helping Hands Food Pantry 
+        </a>
+      </div>
+    </div>
+
+
+        <!-- Legal Aid -->
+        <div class="resource-card" id="legal" style="animation-delay: 0.2s">
+          <h2><span class="emoji">⚖️</span> Legal Assistance</h2>
+          <div class="card-content">
+            <p><strong>Maryland Legal Aid Bureau – Prince George’s County Office</strong><br>📅 Monday – Friday: 9:00 AM – 5:00 PM EDT<br>📍 8401 Corporate Drive, Suite 200, Landover, MD 20785<br>Serving low-income individuals with free civil legal services in family law, housing, public benefits, consumer issues, and expungements.<br>
+             ☎️ Local Phone Number: (301) 560-2100
+              Toll Free Telephone Intake: (888) 215-5316
+              Telephone Intake: (301) 560-2101</p>
+            <a href="https://pgccouncil.us/729/Legal-Services" target="_blank" rel="noopener">
+              Maryland Legal Aid Bureau – Prince George’s County Office 
+            </a>
+            <p><strong>Latino Legal Access Clinic</strong><br>📅 Tuesday & Thursday: 9:00 AM – 3:00 PM EDT; Monday, Wednesday & Friday: by appointment<br>📍 1401 University Blvd E, Langley Park, MD 20783<br>Serving income-eligible clients—including domestic violence survivors—with brief legal advice and referrals.<br>
+               ☎️ (240) 391-6532</p>
+            <a href="https://www.peoples-law.org/events/series/1086" target="_blank" rel="noopener">
+              Latino Legal Access Clinic 
+            </a>
+            <p><strong>District Court Help Center</strong><br>📅 Monday – Friday: 8:30 AM – 4:30 PM EDT<br>📍 District Court for Prince George’s County, 14735 Main Street, Upper Marlboro, MD 20772<br>Serving self-represented litigants with free, limited legal guidance on civil matters.<br>
+             ☎️ (410) 260-1392</p>
+            <a href="https://www.courts.state.md.us/helpcenter/inperson/dc" target="_blank" rel="noopener">
+              District Court Help Center 
+            </a>
+            <p><strong>Prince George’s County Lawyer Referral Service</strong><br>📅 Monday – Friday: 8:30 AM – 4:30 PM EDT<br>📍 Phone intake only: (301) 952-1440<br>Serving low-income individuals with free initial phone consultations to connect with local attorneys.<br>
+             ☎️ (301) 952-1440</p>
+            <a href="https://www.pgcba.com/lawyer-referral-service/" target="_blank" rel="noopener">
+              Prince George’s County Lawyer Referral Service 
+            </a>
+          </div>
+        </div>
+
+
+    <!-- Employment Assistance -->
+    <div class="resource-card" id="employment" style="animation-delay: 0.3s">
+      <h2><span class="emoji">💼</span> Employment Assistance</h2>
+      <div class="card-content">
+        </a>
+        <p><strong>Employ Prince George’s – Headquarters</strong><br>📅 Mon–Fri: 8:30 AM – 5:00 PM EDT<br>📍 1801 McCormick Drive, Suite 400, Largo, MD 20774<br>Serving job seekers and businesses with workforce development programs, job fairs, and supportive services.<br>
+          ☎️ (301) 618-8400</p>
+        <a href="https://www.employpg.org/" target="_blank" rel="noopener">
+          Employ Prince George’s – Headquarters 
+        </a>
+        <p><strong>Prince George’s County Memorial Library – Career Center</strong><br>📅 Wed & Fri: 10:00 AM – 6:00 PM EDT; Thu: 12:00 PM – 8:00 PM EDT; Sat: 9:00 AM – 5:00 PM EDT<br>📍 College Park Community Library, 8215 Dartmouth Ave, College Park, MD 20740<br>Free resume workshops, career counseling, computer lab access, and job search assistance.<br> 
+          ☎️ (301) 699-3500</p>
+        <a href="https://www.pgcmls.info/employment" target="_blank" rel="noopener">
+          Prince George’s County Memorial Library – Career Center 
+        </a>
+        <p><strong>University of Maryland Career &amp; Internship Center</strong><br>📅 Mon–Fri: 8:30 AM – 5:00 PM EDT<br>📍 3100 Hornbake Library South, College Park, MD 20742<br>Providing career advising, internship and job postings, and virtual career fairs for UMD students and alumni.<br>
+          ☎️ 301 - 314 - 7225</p>
+        <a href="https://careers.umd.edu/find-jobs-internships" target="_blank" rel="noopener">
+          University of Maryland Career and Internship Center
+        </a>
+        <p><strong>Maryland Workforce Exchange</strong><br>📅 Online portal (24/7)<br>📍 workforce.md.gov<br>Free job matching, career resources, and training program listings for Maryland residents.<br>
+        ☎️ Toll Free Inside MD: 1-800-827-4839 <br> 
+        ☎️ Baltimore area & out of state: 1-410-949-0022<br>
+ </p>
+        <a href="https://mwejobs.maryland.gov/vosnet/default.aspx" target="_blank" rel="noopener">
+          Maryland Workforce Exchange 
+        </a>
+      </div>
+    </div>
+
+    <!-- Family Support -->
+    <div class="resource-card" id="family Assistance" style="animation-delay: 0.4s">
+      <h2><span class="emoji">👨‍👩‍👧‍👦</span> Family Assistance</h2>
+      <div class="card-content">
+        <p><strong>Youth &amp; Family Services</strong><br>📅 Mon &amp; Fri: 9:30 AM – 6:00 PM EDT; Tue – Thu: 9:30 AM – 8:00 PM EDT<br>📍 4912 Nantucket Road, College Park, MD 20740<br>Serving families through culturally-responsive clinical services and community-based programs to strengthen children’s well-being and family relationships. Sliding scale fees; priority to College Park residents.<br>☎️ 240-487-3550</p>
+        <a href="https://www.collegeparkmd.gov/yfs" target="_blank" rel="noopener">
+          Youth & Family Services 
+        </a>
+        <p><strong>Maryland WIC Program</strong><br>📅 Mon – Fri: 8:00 AM – 4:30 PM EDT<br>📍 8920 Rhode Island Avenue, College Park, MD 20740<br>Providing nutrition education, breastfeeding support, and healthy food benefits for pregnant women, infants, and children under 5.<br>
+       Email: MDH.WIC@Maryland.gov </p>
+        <a href="https://health.maryland.gov/phpa/wic/pages/home.aspx" target="_blank" rel="noopener">
+          Maryland WIC Program 
+        </a>
+        <p><strong>Family Investment Program (FIP)</strong><br>📅 Mon – Fri: 8:00 AM – 5:00 PM EDT<br>📍 805 Brightseat Road, Landover, MD 20785<br>Offering cash assistance, SNAP application support, and employment services for eligible low-income families.<br>
+        ☎️ Phone: 301-909-7000<br>
+          Customer Service 1-800-332-6347</p>
+        <a href="https://dhs.maryland.gov/local-offices/prince-georges-county/" target="_blank" rel="noopener">
+          Family Investment Program (FIP) Department of Social Services
+        </a>
+        <p><strong>Head Start &amp; Early Head Start</strong><br>📅 Mon – Fri: 8:00 AM – 4:30 PM EDT<br>📍 Prince George's Community Action Partnership, 9810 Good Luck Road, Lanham, MD 20706<br>Providing early childhood education, health, and family support services for children ages birth to 5.<br>
+        ☎️ Phone: 202-815-4056<br>
+        </p>
+        <a href="https://www.pgcps.org/globalassets/offices/essa-and-title-1/docs---essa-and-title-1/head-start-easterseals.pdf" target="_blank" rel="noopener">
+          Early Head Start 
+    
+        </a>
+      </div>
+    </div>
+
+    <!-- Public Transit -->
+    <div class="resource-card" id="transportation" style="animation-delay: 0.5s">
+      <h2><span class="emoji">🚌</span> Public Transit</h2>
+      <div class="card-content">
+        <p><strong>Shuttle-UM</strong><br>📅 Academic year: Mon–Sun with reduced service during breaks<br>📍 University of Maryland, College Park, MD<br>Providing free campus and neighborhood shuttle services on 19 routes, connecting to metro stations and campus locations.<br>
+         Email: Transportation@umd.edu</p>
+        <a href="https://transportation.umd.edu/shuttle-um" target="_blank" rel="noopener">
+          Shuttle-UM 
+        </a>
+        <p><strong>Metrobus C2 (Greenbelt–Twinbrook Line)</strong><br>📅 Daily: approx. 4:30 AM–12:30 AM EDT; every 15–30 minutes<br>📍 Greenbelt Metro Station ↔ Twinbrook Metro Station via University Boulevard<br>Serving residents and commuters along the US Route 1 corridor with frequent bus service. <br>
+         Email: feedback@wmata.com</p>
+        <a href="https://buseta.wmata.com/m/index?q=C2" target="_blank" rel="noopener">
+          Metrobus C2 (Greenbelt–Twinbrook Line)
+        </a>
+        <p><strong>MARC Camden Line</strong><br>📅 Weekdays: AM/PM peak hours<br>📍 College Park–U of MD Station<br>Providing commuter rail service to Washington, DC and Baltimore; reduced fares available for eligible commuters.<br>
+         ☎️ Phone:1-866 - 743 - 3682 </p>
+        <a href="https://www.mta.maryland.gov/schedule/timetable/marc-camden" target="_blank" rel="noopener">
+          MARC Camden Line
+        </a>
+        <p><strong>Prince George’s County TheBus Paratransit (Call‑A‑Bus)</strong><br>📅 Mon–Fri: 6 AM–6 PM EDT; Sat: 8 AM–4 PM EDT<br>☎️ Reservations: (301) 499‑8603<br>Offering demand‑response transit for seniors (60+) and persons with disabilities free of charge within county service area.</p>
+        <a href="https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation/call-bus" target="_blank" rel="noopener">
+          TheBus Paratransit 
+        </a>
+        <p><strong>Commuter Connections Guaranteed Ride Home</strong><br>📅 On demand for emergencies<br>📍 Metro DC area commuters<br>Free emergency rides home for participants in rideshare, transit, bicycling, or walking; register at commuterconnections.org.<br>
+        ☎️ Phone:1-800-745-7433 <br>
+        Email: ridematching@mwcog.org</p>
+        <a href="https://www.commuterconnections.org/programs-and-incentives/guaranteed-ride-home/" target="_blank" rel="noopener">
+          Commuter Connections Guaranteed Ride Home 
+        </a>
+      </div>
+    </div>
+
+        <!-- Housing Assistance -->
+        <div class="resource-card" id="housing" style="animation-delay: 0.5s">
+          <h2>🏠 Housing Assistance</h2>
+          <div class="card-content">
+            <p><strong>Emergency Rental Assistance Program (ERAP)</strong><br>
+            📅 Walk-In: Monday – Thursday: 9:00 AM – 5:00 PM EDT<br>
+            ☎️ Phone: (301) 883-6504 (Press 9 for status update)<br>
+            📍 9200 Basil Court, Suite 306, Largo, MD 20774<br>
+            Serving tenants and landlords in Prince George’s County with emergency rental and utility assistance.</p>
+            <a href="https://www.princegeorgescountymd.gov/departments-offices/housing-community-development/community-grants-and-programs/emergency-rental-assistance-program" target="_blank" rel="noopener">
+              Emergency Rental Assistance Program (ERAP)
+            </a>
+
+
+
+            
+            <p><strong>Housing Authority of Prince George’s County</strong><br>
+            📅 Monday – Friday: 8:30 AM – 4:30 PM EDT<br>
+            ☎️ Phone: (301) 883-5501<br>
+            📍 9200 Basil Court, Suite 107, Largo, MD 20774<br>
+            Providing rental subsidies through Housing Choice Vouchers and public housing for low- to moderate-income residents.</p>
+            <a href="https://www.princegeorgescountymd.gov/departments-offices/housing-authority" target="_blank" rel="noopener">
+              Housing Authority of Prince George’s County
+            </a>
+
+
+
+            <p><strong>Housing Authority of the City of College Park (HACCP)</strong><br>
+            📅 Office by appointment (currently closed to public)<br>
+            ☎️ Phone: (301) 345-3600<br>
+            📍 7411 Knox Road, College Park, MD 20740<br>
+            Serving low- to moderate-income City of College Park residents with public housing, tenant support, and community development.</p>
+            <a href="https://haccpmd.agency/" target="_blank" rel="noopener">
+            Housing Authority of the City of College Park 
+            </a>
+      
+            
+            <p><strong>City of College Park Financial Assistance Program</strong><br>
+            📅 Apply Mon – Thu by application (review & award bi-weekly)<br>
+            ☎️ Phone: (240) 487 - 3500<br>
+            📍 7401 Baltimore Avenue, Suite 201, College Park, MD 20740<br>
+            Providing one-time grants up to $2,500 for emergency rent, mortgage, and utility payments to eligible low-income residents.</p>
+            <a href="https://www.collegeparkmd.gov/314/City-Assistance-Programs" target="_blank" rel="noopener">
+              City of College Park Financial Assistance Program
+            
+
+          </div>
+        </div>
+ 
+      
+      <a href="https://www.instagram.com/thecenter.umd/" target="_blank" class="instagram-btn">
+          <span class="emoji">📸</span> <span class="animate-text" id="instagram-btn-text">Follow us on Instagram!</span>
+
